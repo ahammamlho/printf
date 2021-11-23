@@ -6,7 +6,7 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:30 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/22 17:50:45 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/23 01:19:11 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static unsigned int	ft_unsigned_nbrlen(unsigned int nbr)
 
 static char	*ft_unsigned_reverse(char *src)
 {
-	char	temp;
+	char				temp;
 	unsigned int		len;
 	unsigned int		i;
 
@@ -53,18 +53,18 @@ static char	*ft_unsigned_reverse(char *src)
 
 char	*ft_unsigned_itoa(unsigned int n)
 {
-	char	*result;
+	char				*result;
 	unsigned int		temp;
 	unsigned int		mod;
 	unsigned int		i;
 
 	i = 0;
 	temp = n;
-	if (n == 0 )
+	if (n == 0)
 		return (ft_strdup("0"));
 	if (temp < 0)
 		temp = -temp;
-	result = (char *)malloc(ft_unsigned_nbrlen(n) + 1);
+	result = (char *)malloc (ft_unsigned_nbrlen(n) + 1);
 	if (!result)
 		return (0);
 	while (temp > 0)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_bace.c                                  :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:51:31 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/22 20:29:58 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/23 00:58:53 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_add_char(char *src, char c)
 		result[i] = src[i];
 		i++;
 	}
-    if (src)
-	    free(src);
+	if (src)
+		free(src);
 	result[i] = c;
 	result[i + 1] = '\0';
 	return (result);
@@ -36,10 +36,10 @@ char	*ft_add_char(char *src, char c)
 
 char	*ft_int_base(uintptr_t nbr, char *res)
 {
-	int	len_base;
-    char *base;
+	int		len_base;
+	char	*base;
 
-    base = "0123456789abcdef";
+	base = "0123456789abcdef";
 	len_base = ft_strlen(base);
 	if (nbr < 0)
 	{
@@ -49,18 +49,18 @@ char	*ft_int_base(uintptr_t nbr, char *res)
 	if (nbr > 0)
 	{
 		res = ft_int_base(nbr / len_base, res);
-	 	res = ft_add_char(res, base[nbr % len_base]);
+		res = ft_add_char(res, base[nbr % len_base]);
 	}
 	return (res);
 }
 
 char	*ft_int_32base(u_int32_t nbr, char *res, int is_lower)
 {
-	int	len_base;
-    char *base;
+	int		len_base;
+	char	*base;
 
 	if (is_lower)
-    	base = "0123456789abcdef";
+		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
 	len_base = ft_strlen(base);
@@ -72,7 +72,7 @@ char	*ft_int_32base(u_int32_t nbr, char *res, int is_lower)
 	if (nbr > 0)
 	{
 		res = ft_int_32base(nbr / len_base, res, is_lower);
-	 	res = ft_add_char(res, base[nbr % len_base]);
+		res = ft_add_char(res, base[nbr % len_base]);
 	}
 	return (res);
 }
