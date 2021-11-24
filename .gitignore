@@ -1,6 +1,6 @@
 .vscode
 a.out
 printfTester
-*.out
-*.o
+*.o*
+*.a
 libft

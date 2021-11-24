@@ -6,18 +6,15 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 11:04:43 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/23 01:18:27 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:28:18 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+# include "../bonus/ft_printf_bonus.h"
+# include "../libft/libft.h"
 // ft_convert_base.c
 void	ft_free(char **ptr);
 char	*ft_add_char(char *src, char c);

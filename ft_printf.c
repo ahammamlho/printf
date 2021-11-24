@@ -6,11 +6,11 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 10:28:31 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/23 01:20:44 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/23 11:29:15 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "mondatory/ft_printf.h"
 
 static int	ft_nbrlen( int nbr)
 {
@@ -110,5 +110,10 @@ int	ft_printf(const char *str, ...)
 
 // int main()
 // {
-//     ft_printf("---%x---", NULL);
+//     //ft_printf("---%x---", NULL);
+// 	int d = 3;
+// 	char c = 'f';
+	
+// 	printf( "%#X\n",  0);
+
 // }
