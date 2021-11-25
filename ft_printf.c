@@ -6,17 +6,16 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:23:45 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/24 23:45:45 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/25 13:51:29 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int	ft_putresultat(char *result, char *index)
+static int	ft_putresultat(char *result, char *index)
 {
-	int	i;
-	int	nbr;
+	int		i;
+	int		nbr;
 
 	i = 0;
 	nbr = ft_atoi(index);
@@ -35,26 +34,33 @@ int	ft_putresultat(char *result, char *index)
 	return (i);
 }
 
-void	ft_body_printf(char c, va_list list, char **res, char **ind, char *flags)
+static void	ft_body_printf(va_list list, char **res, char **ind, char *flags)
 {
-	if (c == 'c')
+	if (flags[ft_strlen(flags) - 1] == 'c')
 		ft_print_char(res, va_arg(list, int), ind, flags);
-	if (c == 's')
+	if (flags[ft_strlen(flags) - 1] == 's')
 		ft_print_string(res, va_arg(list, char *), flags);
-	if (c == 'p')
+	if (flags[ft_strlen(flags) - 1] == 'p')
 		ft_print_pointer(res, va_arg(list, void *), flags);
-	if (c == 'd')
+	if (flags[ft_strlen(flags) - 1] == 'd'
+		|| flags[ft_strlen(flags) - 1] == 'i')
 		ft_print_decimal(res, va_arg(list, int), flags);
-	if (c == 'i')
-		ft_print_decimal(res, va_arg(list, int), flags);
-	if (c == 'u')
+	if (flags[ft_strlen(flags) - 1] == 'u')
 		ft_print_unsigned_decimal(res, va_arg(list, unsigned int), flags);
-	if (c == 'x')
+	if (flags[ft_strlen(flags) - 1] == 'x')
 		ft_print_num_hex_l(res, va_arg(list, int), 1, flags);
-	if (c == 'X')
+	if (flags[ft_strlen(flags) - 1] == 'X')
 		ft_print_num_hex_l(res, va_arg(list, int), 0, flags);
-	if (c == '%')
+	if (flags[ft_strlen(flags) - 1] == '%')
 		*res = ft_add_char(*res, '%');
+}
+
+static void	ft_init(char **result, char **index, char **flags, int *i)
+{
+	*i = -1;
+	*flags = (char *)ft_calloc(1, sizeof(char));
+	*result = (char *)ft_calloc(1, sizeof(char));
+	*index = (char *)ft_calloc(1, sizeof(char));
 }
 
 int	ft_printf(const char *str, ...)
@@ -62,42 +68,32 @@ int	ft_printf(const char *str, ...)
 	char		*result;
 	va_list		list;
 	int			i;
-	int			len;
 	char		*index;
-	char 		*flags;
+	char		*flags;
 
 	va_start(list, str);
-	i = -1;
-	flags = (char *)ft_calloc(1, 1);
-	result = (char *)ft_calloc(1, sizeof(char));
-	index = (char *)ft_calloc(1, sizeof(char));
+	ft_init(&result, &index, &flags, &i);
 	while (str && str[++i])
 	{
 		if (str[i] == '%')
 		{
 			ft_add_flags(str, &i, &flags);
-			ft_body_printf(str[i + 1], list, &result, &index, flags);
-			i++;
+			ft_body_printf(list, &result, &index, flags);
 		}
 		else
 			result = ft_add_char(result, str[i]);
 		ft_bzero(flags, ft_strlen(flags));
 	}
 	va_end(list);
-	len = ft_putresultat(result, index);
-	free(result);
-	free(index);
-	free(flags);
-	return (len);
+	i = ft_putresultat(result, index);
+	ft_free(&result, &index, &flags);
+	return (i);
 }
 
-// # define STR "--|%#10.4x|--\n", a
+// # define STR "--|%c|--\n", '2'
 // int main()
 // {
-// 	char c = '\0';
-// 	char *s = "ahamm";
-// 	int a = 0;
 // 	int u = ft_printf(STR);
-//  	int t = printf(STR);
+//  	// int t = printf(STR);
 // 	//printf("%d---%d", u , t);
 // }

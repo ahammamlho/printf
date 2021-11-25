@@ -6,7 +6,7 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:59:56 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/24 23:29:03 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:52:18 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	ft_print_char(char **str, char c, char **index, char *flags)
 {
 	char	*res;
 	int		i;
-	char *temp;
+	char	*temp;
 
 	res = 0;
 	temp = ft_calloc(1, sizeof(char));
 	i = -1;
 	if (c == 0)
 	{
-		if (ft_strlen(flags) == 0)
-			res = ft_itoa(ft_strlen(*str) + ft_atoi(flags));
-		else if (ft_char_in_strig(flags,'-') == -1)
+		if (ft_strlen(flags) == 1)
+			res = ft_itoa(ft_strlen(*str));
+		else if (ft_char_in_strig(flags, '-') == -1)
 			res = ft_itoa(ft_strlen(*str) + ft_atoi(flags) - 1);
 		else
 			res = ft_itoa(ft_strlen(*str));
@@ -38,8 +38,7 @@ void	ft_print_char(char **str, char c, char **index, char *flags)
 	else
 		temp = ft_add_char(temp, 'c');
 	ft_flags_left_min(str, temp, flags);
-	free(temp);
-	free(res);
+	ft_free(&temp, &res, 0);
 }
 
 void	ft_print_string(char **str, char *s, char *flags)
@@ -52,13 +51,14 @@ void	ft_print_string(char **str, char *s, char *flags)
 		temp = ft_strdup("(null)");
 	else
 		temp = ft_strdup(s);
-	if (ft_char_in_strig(flags,'.') != -1)
-		sub = ft_substr(temp, 0 , ft_atoi(flags + ft_char_in_strig(flags,'.') + 1));
+	if (ft_char_in_strig(flags, '.') != -1)
+		sub = ft_substr(temp, 0,
+				ft_atoi(flags + ft_char_in_strig(flags, '.') + 1));
 	else
 		sub = temp;
 	ft_flags_left_min(str, sub, flags);
 	free(temp);
-	if (ft_char_in_strig(flags,'.') != -1)
+	if (ft_char_in_strig(flags, '.') != -1)
 		free(sub);
 }
 

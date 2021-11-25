@@ -6,15 +6,15 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:40:52 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/24 23:19:57 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:14:35 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_char_in_strig(char *str, char c)
+int	ft_char_in_strig(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i])
@@ -26,21 +26,26 @@ int ft_char_in_strig(char *str, char c)
 	return (-1);
 }
 
-void ft_add_flags(const char *str, int *i, char **flags)
+void	ft_add_flags(const char *str, int *i, char **flags)
 {
-	int j;
+	int	j;
 
 	j = 1;
-	while (str[*i + j] != '%' && ft_char_in_strig("cspdiuxX", str[*i + j]) == -1)
+	(*i)++;
+	while (j)
 	{
-		*flags = ft_add_char(*flags, str[*i + j]);
+		*flags = ft_add_char(*flags, str[*i]);
+		if (ft_char_in_strig("cspdiuxX", str[*i]) != -1
+			|| str[*i] == '%')
+			j = 0;
 		(*i)++;
 	}
+	(*i)--;
 }
 
-int ft_is_flag_zero(char *flags)
+int	ft_is_flag_zero(char *flags)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (flags[i] && flags[i] != '.')
@@ -56,10 +61,10 @@ int ft_is_flag_zero(char *flags)
 
 int	ft_min_width(char *flags, int idx)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (flags[idx + i] )
+	while (flags[idx + i])
 	{
 		if (flags[idx + i] >= '0' && flags[idx + i] <= '9')
 			return (idx + i);
@@ -70,7 +75,7 @@ int	ft_min_width(char *flags, int idx)
 
 void	ft_add_n_char(char **res, char c, int n)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (n > 0)
