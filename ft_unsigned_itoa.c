@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsigned_itoa_bonus.c                           :+:      :+:    :+:   */
+/*   ft_unsigned_itoa.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:30 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/23 11:34:11 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:34:24 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
-static unsigned int	ft_unsigned_nbrlen_bonus(unsigned int nbr)
+static unsigned int	ft_unsigned_nbrlen(unsigned int nbr)
 {
 	unsigned int	len;
 	unsigned int	mod;
@@ -33,7 +33,7 @@ static unsigned int	ft_unsigned_nbrlen_bonus(unsigned int nbr)
 	return (len);
 }
 
-static char	*ft_unsigned_reverse_bonus(char *src)
+static char	*ft_unsigned_reverse(char *src)
 {
 	char				temp;
 	unsigned int		len;
@@ -51,7 +51,7 @@ static char	*ft_unsigned_reverse_bonus(char *src)
 	return (src);
 }
 
-char	*ft_unsigned_itoa_bonus(unsigned int n)
+char	*ft_unsigned_itoa(unsigned int n)
 {
 	char				*result;
 	unsigned int		temp;
@@ -64,7 +64,7 @@ char	*ft_unsigned_itoa_bonus(unsigned int n)
 		return (ft_strdup("0"));
 	if (temp < 0)
 		temp = -temp;
-	result = (char *)malloc (ft_unsigned_nbrlen_bonus(n) + 1);
+	result = (char *)malloc (ft_unsigned_nbrlen(n) + 1);
 	if (!result)
 		return (0);
 	while (temp > 0)
@@ -77,5 +77,5 @@ char	*ft_unsigned_itoa_bonus(unsigned int n)
 	if (n < 0)
 		result[i++] = '-';
 	result[i] = '\0';
-	return (ft_unsigned_reverse_bonus(result));
+	return (ft_unsigned_reverse(result));
 }

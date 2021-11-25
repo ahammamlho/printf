@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_base_bonus.c                            :+:      :+:    :+:   */
+/*   ft_convert_base.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:51:31 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/23 11:31:52 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/24 17:12:03 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
-char	*ft_add_char_bonus(char *src, char c)
+char	*ft_add_char(char *src, char c)
 {
 	int		lent_src;
 	char	*result;
@@ -34,7 +34,7 @@ char	*ft_add_char_bonus(char *src, char c)
 	return (result);
 }
 
-char	*ft_int_base_bonus(uintptr_t nbr, char *res)
+char	*ft_int_base(uintptr_t nbr, char *res)
 {
 	int		len_base;
 	char	*base;
@@ -44,17 +44,17 @@ char	*ft_int_base_bonus(uintptr_t nbr, char *res)
 	if (nbr < 0)
 	{
 		nbr = -1 * nbr;
-		res = ft_add_char_bonus(res, '-');
+		res = ft_add_char(res, '-');
 	}
 	if (nbr > 0)
 	{
-		res = ft_int_base_bonus(nbr / len_base, res);
-		res = ft_add_char_bonus(res, base[nbr % len_base]);
+		res = ft_int_base(nbr / len_base, res);
+		res = ft_add_char(res, base[nbr % len_base]);
 	}
 	return (res);
 }
 
-char	*ft_int_32base_bonus(u_int32_t nbr, char *res, int is_lower)
+char	*ft_int_32base(u_int32_t nbr, char *res, int is_lower)
 {
 	int		len_base;
 	char	*base;
@@ -67,12 +67,12 @@ char	*ft_int_32base_bonus(u_int32_t nbr, char *res, int is_lower)
 	if (nbr < 0)
 	{
 		nbr = -1 * nbr;
-		res = ft_add_char_bonus(res, '-');
+		res = ft_add_char(res, '-');
 	}
 	if (nbr > 0)
 	{
-		res = ft_int_32base_bonus(nbr / len_base, res, is_lower);
-		res = ft_add_char_bonus(res, base[nbr % len_base]);
+		res = ft_int_32base(nbr / len_base, res, is_lower);
+		res = ft_add_char(res, base[nbr % len_base]);
 	}
 	return (res);
 }
