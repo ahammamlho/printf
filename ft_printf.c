@@ -6,7 +6,7 @@
 /*   By: lahammam <lahammam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:23:45 by lahammam          #+#    #+#             */
-/*   Updated: 2021/11/25 13:51:29 by lahammam         ###   ########.fr       */
+/*   Updated: 2021/11/25 14:28:13 by lahammam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ int	ft_printf(const char *str, ...)
 	return (i);
 }
 
+// # include <stdio.h>
 // # define STR "--|%c|--\n", '2'
 // int main()
 // {
-// 	int u = ft_printf(STR);
+// 	//int u = ft_printf(STR);
 //  	// int t = printf(STR);
 // 	//printf("%d---%d", u , t);
 // }
